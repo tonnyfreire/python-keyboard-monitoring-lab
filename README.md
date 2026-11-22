@@ -1,216 +1,266 @@
-# ⌨️ Keyboard Monitoring Lab — Python
+# ⌨️ Keyboard Monitoring Lab
 
-### Educational Cybersecurity Project | Python | Windows | Email & Event Monitoring
+### Python · Windows · Cybersecurity Research · Security Awareness
 
-> **Projeto exclusivamente educacional.** Desenvolvido com o propósito de estudar mecanismos de monitoramento de eventos de teclado, manipulação de eventos no Windows, tratamento de caracteres e conceitos relacionados à segurança da informação. Não deve ser utilizado para monitorar terceiros sem consentimento explícito.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Platform-Windows-0078D4?logo=windows&logoColor=white" alt="Windows">
+  <img src="https://img.shields.io/badge/Focus-Cybersecurity-red" alt="Cybersecurity">
+  <img src="https://img.shields.io/badge/Purpose-Educational-green" alt="Educational">
+</p>
 
 ---
+
+> [!WARNING]
+> **Educational Security Research**
+>
+> Projeto desenvolvido exclusivamente para estudos, pesquisa e conscientização em segurança da informação.
+>
+> O tema envolve mecanismos de monitoramento de teclado, que podem representar riscos à privacidade e à segurança de dados. Os exemplos disponibilizados neste repositório são demonstrativos e não implementam captura persistente ou transmissão de entradas de usuários.
 
 ## 📌 Sobre o projeto
 
-Este projeto explora, em Python, conceitos relacionados ao monitoramento de eventos de teclado em ambientes Windows, identificação de janelas ativas, tratamento de caracteres especiais e automação de comunicação por e-mail.
+O Keyboard Monitoring Lab é um projeto de estudos desenvolvido em Python, com foco na compreensão de mecanismos de monitoramento de eventos de teclado em ambientes Windows.
 
-A estrutura permite analisar como diferentes componentes de software podem ser integrados, demonstrando também os riscos associados ao uso indevido de mecanismos de monitoramento de entrada.
+A pesquisa aborda conceitos de interação com o sistema operacional, tratamento de caracteres especiais, manipulação de arquivos, execução paralela e comunicação SMTP.
 
-O projeto é voltado para aprendizado técnico, análise de código e conscientização sobre ameaças cibernéticas.
+Além dos aspectos de programação, o projeto explora os riscos associados a ferramentas de captura de entrada, incluindo exposição de credenciais, monitoramento não autorizado e exfiltração de informações.
 
-## 🎯 Objetivos educacionais
+**Objetivo principal:** compreender como essas tecnologias funcionam e como seus comportamentos podem ser identificados e analisados sob uma perspectiva defensiva.
 
-- Compreender o funcionamento de listeners de teclado em Python.
-- Estudar eventos de teclado e a distinção entre caracteres e teclas especiais.
-- Analisar o tratamento de caracteres acentuados em layouts de teclado.
-- Compreender a interação entre aplicações Windows e informações da janela ativa.
-- Estudar conceitos de threads e execução paralela.
-- Conhecer o funcionamento do protocolo SMTP e envio automatizado de mensagens.
-- Identificar riscos de privacidade, exposição de informações e monitoramento indevido.
-- Desenvolver conhecimentos aplicáveis à análise de ameaças e defesa cibernética.
+## 📑 Índice
+
+- [Objetivos](#-objetivos)
+- [Tecnologias](#-tecnologias-utilizadas)
+- [Arquitetura](#-arquitetura-conceitual)
+- [Módulos estudados](#-módulos-estudados)
+- [Exemplos de código](#-exemplos-demonstrativos)
+- [Análise de segurança](#-análise-de-segurança)
+- [MITRE ATT&CK](#-mapeamento-mitre-attck)
+- [Medidas defensivas](#-medidas-defensivas)
+- [Referências](#-referências)
+- [Disclaimer](#️-disclaimer)
+
+## 🎯 Objetivos
+
+- Estudar eventos de teclado e suas representações em Python.
+- Compreender a diferença entre caracteres e teclas especiais.
+- Analisar o tratamento de caracteres Unicode e acentuação.
+- Conhecer a interação entre aplicações Python e o Windows.
+- Compreender conceitos de threads e execução paralela.
+- Estudar comunicação SMTP e estruturação de mensagens MIME.
+- Identificar riscos associados ao monitoramento de entrada.
+- Conhecer técnicas de detecção e prevenção de ameaças.
 
 ## 🧰 Tecnologias utilizadas
 
-| Tecnologia | Finalidade técnica |
+| Tecnologia | Aplicação |
 |---|---|
-| Python | Linguagem de programação |
-| pynput | Biblioteca para interação com eventos de teclado |
-| pywin32 | Integração com recursos e APIs do Windows |
-| threading | Conceitos de execução paralela |
-| smtplib | Comunicação com servidores SMTP |
-| MIME | Estruturação de mensagens de e-mail |
-| datetime | Manipulação de datas e horários |
-| time | Controle de intervalos e tempo |
-| os | Interação com arquivos e sistema operacional |
+| Python | Desenvolvimento e lógica |
+| pynput | Estudo de eventos de teclado |
+| pywin32 | Integração com Windows |
+| threading | Execução paralela |
+| datetime | Datas e horários |
+| time | Controle temporal |
+| os | Manipulação de arquivos |
+| smtplib | Comunicação SMTP |
+| MIME | Estrutura de mensagens |
 
-## 🧠 Arquitetura do projeto
+## 🏗️ Arquitetura conceitual
 
-O código está organizado em cinco blocos principais.
+O projeto original foi dividido em cinco componentes funcionais. O diagrama abaixo representa os conceitos estudados, não uma sequência operacional de coleta e transmissão de informações.
 
-### 1. Configuração de e-mail
+```mermaid
+flowchart TD
+    A[Python Application] --> B[Event Analysis]
+    A --> C[Windows Integration]
+    A --> D[Character Processing]
+    A --> E[File Handling]
+    A --> F[Parallel Execution]
+    F --> G[SMTP Concepts]
+    B --> H[Security Analysis]
+    C --> H
+    D --> H
+    E --> H
+    G --> H
+    H --> I[Defensive Research]
+```
 
-Responsável pelas variáveis relacionadas à comunicação SMTP, incluindo remetente, destinatário, credenciais e intervalo de envio.
+## 🔬 Módulos estudados
 
-<details>
-<summary>Conceitos envolvidos</summary>
+### 01 — Event Handling
 
-- Autenticação SMTP.
-- TLS.
-- Credenciais de aplicação.
-- Estrutura de mensagens MIME.
-- Riscos de armazenamento de credenciais no código-fonte.
+Estudo de eventos de teclado e representação de teclas comuns e especiais.
 
-</details>
-
-### 2. Configurações e variáveis globais
-
-Define estruturas utilizadas pelo programa para representar teclas ignoradas, caracteres acentuados, estado de execução e referências temporais.
-
-<details>
-<summary>Conceitos envolvidos</summary>
-
-- Conjuntos (`set`).
-- Dicionários (`dict`).
-- Variáveis globais.
-- Estados de aplicação.
-- Representação de caracteres.
-
-</details>
-
-### 3. Funções auxiliares e comunicação
-
-Agrupa funções relacionadas à interação com o sistema operacional, manipulação de arquivos e estruturação da comunicação por e-mail.
-
-<details>
-<summary>Conceitos envolvidos</summary>
-
-- Manipulação de arquivos.
-- Tratamento de exceções.
-- APIs do Windows.
-- SMTP.
-- Formatação de mensagens.
-- Operações de leitura e escrita.
-
-</details>
-
-### 4. Lógica de eventos
-
-Contém a estrutura responsável pelo tratamento dos eventos recebidos e pela análise de diferentes tipos de teclas.
-
-<details>
-<summary>Conceitos envolvidos</summary>
-
+**Conceitos:**
 - Callbacks.
-- Eventos de teclado.
-- `try` e `except`.
+- Listeners.
+- Eventos.
 - Teclas especiais.
-- Caracteres Unicode.
-- Teclas mortas e acentuação.
-- Controle de fluxo.
+- Tratamento de exceções.
 
-</details>
+### 02 — Character Processing
 
-### 5. Inicialização e execução paralela
+Análise de caracteres especiais, Unicode e comportamento de teclas mortas.
 
-Representa a estrutura de inicialização do programa e a integração entre diferentes componentes.
+**Conceitos:**
+- Dicionários.
+- Conjuntos.
+- Unicode.
+- UTF-8.
+- Caracteres acentuados.
 
-<details>
-<summary>Conceitos envolvidos</summary>
+### 03 — Windows Integration
 
-- Ponto de entrada `__main__`.
+Estudo da integração entre aplicações Python e recursos do sistema operacional.
+
+**Conceitos:**
+- APIs do Windows.
+- Janelas em primeiro plano.
+- Processos.
+- Permissões.
+- Contexto de execução.
+
+### 04 — File Management
+
+Análise de operações de leitura, escrita e persistência de dados.
+
+**Conceitos:**
+- Manipulação de arquivos.
+- Codificação.
+- Tratamento de erros.
+- Controle de acesso.
+- Proteção de informações.
+
+### 05 — Parallel Execution
+
+Estudo da execução simultânea de tarefas.
+
+**Conceitos:**
 - Threads.
+- Processos.
+- Sincronização.
 - Execução em segundo plano.
-- Listener.
-- Ciclo de vida de processos.
+- Ciclo de vida de tarefas.
 
-</details>
+### 06 — Email Communication
 
-## 🔬 Roteiro de estudo
+Estudo da comunicação entre aplicações e servidores de e-mail.
 
-O projeto pode ser utilizado como referência para estudos de análise de código e segurança defensiva.
+**Conceitos:**
+- SMTP.
+- TLS.
+- MIME.
+- Autenticação.
+- Proteção de credenciais.
 
-### Etapa 1 — Análise estrutural
+## 💻 Exemplos demonstrativos
 
-- Identificar os módulos importados.
-- Analisar a divisão das funções.
-- Compreender o fluxo de execução.
-- Identificar variáveis globais e dependências.
+Os fragmentos a seguir apresentam conceitos isolados, sem implementar o mecanismo de captura global ou transmissão de dados.
 
-### Etapa 2 — Análise dos eventos
+### Tratamento de exceções
 
-- Estudar a documentação da biblioteca `pynput`.
-- Diferenciar `Key` e `KeyCode`.
-- Compreender callbacks.
-- Analisar o tratamento de exceções.
+```python
+try:
+    resultado = 10 / 2
+    print(resultado)
 
-### Etapa 3 — Windows e processos
+except ZeroDivisionError:
+    print("Operação inválida")
+```
 
-- Estudar os conceitos de janela ativa.
-- Compreender a interação entre Python e APIs do Windows.
-- Analisar as permissões de aplicações.
+### Manipulação de caracteres
 
-### Etapa 4 — Comunicação e segurança
+```python
+TABELA_ACENTOS = {
+    "^": {
+        "a": "â",
+        "e": "ê"
+    },
+    "~": {
+        "a": "ã",
+        "o": "õ"
+    }
+}
 
-- Estudar SMTP e TLS.
-- Compreender autenticação de aplicações.
-- Identificar riscos relacionados a credenciais.
-- Analisar mecanismos de envio de dados.
+print(TABELA_ACENTOS["^"]["a"])
+```
 
-### Etapa 5 — Segurança defensiva
+### Execução paralela
 
-- Identificar comportamentos potencialmente maliciosos.
-- Estudar mecanismos de detecção de monitoramento de teclado.
-- Analisar permissões e persistência de aplicações.
-- Conhecer estratégias de prevenção contra coleta indevida de dados.
+```python
+import threading
 
-## ⚠️ Segurança e privacidade
+def tarefa_demo():
+    print("Tarefa demonstrativa")
 
-Aplicações que monitoram eventos globais de teclado podem capturar informações sensíveis, incluindo:
+thread = threading.Thread(target=tarefa_demo)
+thread.start()
+thread.join()
+```
 
-- Credenciais de autenticação.
-- Informações pessoais.
-- Mensagens privadas.
-- Dados corporativos.
-- Informações financeiras.
+## 🛡️ Análise de segurança
 
-A identificação de janelas ativas e a transmissão de registros por e-mail aumentam os riscos de exposição de informações.
+Ferramentas de monitoramento de teclado podem ser utilizadas em atividades maliciosas quando empregadas para capturar informações sem autorização.
 
-### Recomendações
+### Principais riscos identificados
 
-- Não utilizar o projeto em equipamentos de terceiros.
-- Não monitorar usuários sem consentimento explícito.
-- Não utilizar contas pessoais ou corporativas reais para testes.
-- Não armazenar credenciais diretamente no código-fonte.
-- Não publicar senhas, tokens ou informações confidenciais no GitHub.
-- Realizar análises em ambientes isolados.
-- Priorizar estudos de detecção, análise e prevenção.
+| Risco | Possível impacto |
+|---|---|
+| Captura de credenciais | Comprometimento de contas |
+| Monitoramento indevido | Violação de privacidade |
+| Exposição de dados | Vazamento de informações |
+| Comunicação externa | Exfiltração de dados |
+| Execução não autorizada | Comprometimento do endpoint |
 
-## 🛡️ Aplicação em cibersegurança
+## 🧭 Mapeamento MITRE ATT&CK
 
-O estudo de mecanismos de monitoramento de teclado pode contribuir para o entendimento de técnicas utilizadas em ameaças cibernéticas, especialmente no contexto de:
+O comportamento estudado possui relação com técnicas documentadas no framework MITRE ATT&CK.
 
-- Spyware.
-- Keylogging.
-- Exfiltração de dados.
-- Monitoramento não autorizado.
-- Engenharia social.
-- Análise de comportamento de malware.
-- Segurança de endpoints.
+| Técnica | Identificação | Contexto |
+|---|---|---|
+| Input Capture | T1056 | Captura de entradas |
+| Keylogging | T1056.001 | Registro de teclas |
+| Exfiltration Over Web Service | T1567 | Exfiltração por serviços web |
 
-O conhecimento desses mecanismos pode auxiliar profissionais de TI e segurança da informação na identificação de comportamentos suspeitos e no desenvolvimento de estratégias de proteção.
+Referência: [MITRE ATT&CK](https://attack.mitre.org/)
 
-## 📚 Referências
+## 🔐 Medidas defensivas
+
+Para reduzir os riscos associados a mecanismos de monitoramento indevido:
+
+- Utilizar soluções de proteção de endpoints.
+- Monitorar aplicações com comportamento suspeito.
+- Restringir permissões de execução.
+- Aplicar políticas de segurança.
+- Proteger credenciais e tokens.
+- Monitorar conexões de rede.
+- Investigar processos desconhecidos.
+- Manter sistemas operacionais atualizados.
+
+## 📚 Referências técnicas
 
 - [Python Documentation](https://docs.python.org/3/)
 - [pynput Documentation](https://pynput.readthedocs.io/en/latest/)
-- [pywin32 Documentation](https://github.com/mhammond/pywin32)
-- [MITRE ATT&CK — Input Capture (T1056)](https://attack.mitre.org/techniques/T1056/)
-- [MITRE ATT&CK — Exfiltration (TA0010)](https://attack.mitre.org/tactics/TA0010/)
+- [pywin32 Repository](https://github.com/mhammond/pywin32)
+- [MITRE ATT&CK](https://attack.mitre.org/)
+- [MITRE T1056 — Input Capture](https://attack.mitre.org/techniques/T1056/)
+- [MITRE T1056.001 — Keylogging](https://attack.mitre.org/techniques/T1056/001/)
 
 ## ⚖️ Disclaimer
 
-Este repositório possui finalidade exclusivamente educacional e de pesquisa em segurança da informação.
+Este projeto possui finalidade exclusivamente educacional e de pesquisa em segurança da informação.
 
-O autor não incentiva, autoriza ou assume responsabilidade pelo uso deste código para monitoramento não autorizado, coleta de informações privadas, violação de privacidade ou qualquer atividade ilícita.
+O conteúdo publicado busca demonstrar conceitos de programação, funcionamento de mecanismos de monitoramento e análise de riscos cibernéticos.
 
-A utilização de ferramentas de monitoramento deve respeitar a legislação aplicável, os direitos individuais, as políticas de segurança e a autorização expressa dos envolvidos.
+Não é destinado à coleta não autorizada de informações, monitoramento de terceiros ou violação de privacidade.
+
+Qualquer estudo envolvendo monitoramento de eventos deve ocorrer em ambiente controlado, com autorização expressa e respeito à legislação aplicável.
 
 ---
 
-<sub>Educational Cybersecurity Research | Python | Windows | Security Awareness</sub>
+<p align="center">
+  <b>Learn · Analyze · Protect</b>
+  <br>
+  <sub>Cybersecurity Research | Python | Windows Security</sub>
+</p>
